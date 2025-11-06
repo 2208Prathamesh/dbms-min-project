@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Room Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hotel Room Management System</h1>
+        <nav>
+            <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="nav-btn" data-tab="customers">Customers</button>
+            <button class="nav-btn" data-tab="rooms">Rooms</button>
+            <button class="nav-btn" data-tab="bookings">Bookings</button>
+            <button class="nav-btn" data-tab="payments">Payments</button>
+            <button class="nav-btn" data-tab="staff">Staff</button>
+            <button class="nav-btn" data-tab="credits">Project Credits</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content active">
+            <h2>Dashboard</h2>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon customers-icon">👥</div>
+                    <div class="stat-info">
+                        <h3>Total Customers</h3>
+                        <p id="total-customers">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon rooms-icon">🏠</div>
+                    <div class="stat-info">
+                        <h3>Available Rooms</h3>
+                        <p id="available-rooms">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon bookings-icon">📅</div>
+                    <div class="stat-info">
+                        <h3>Total Bookings</h3>
+                        <p id="total-bookings">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon revenue-icon">💰</div>
+                    <div class="stat-info">
+                        <h3>Total Revenue</h3>
+                        <p id="total-revenue">$0.00</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="recent-bookings">
+                    <h3>Recent Bookings</h3>
+                    <table id="recent-bookings-table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Room</th>
+                                <th>Check-in</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Recent bookings will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="drop-database-section">
+                    <h3>Database Management</h3>
+                    <button id="drop-database-btn" class="btn-danger">Drop All Database Tables</button>
+                    <p class="warning-text">Warning: This will permanently delete all data!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customers Tab -->
+        <section id="customers" class="tab-content">
+            <h2>Customers</h2>
+            <button id="add-customer-btn" class="btn-primary">Add New Customer</button>
+            <table id="customers-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Customer data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Rooms Tab -->
+        <section id="rooms" class="tab-content">
+            <h2>Rooms</h2>
+            <button id="add-room-btn" class="btn-primary">Add New Room</button>
+            <table id="rooms-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Room Type</th>
+                        <th>Price per Night</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Room data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Bookings Tab -->
+        <section id="bookings" class="tab-content">
+            <h2>Bookings</h2>
+            <button id="add-booking-btn" class="btn-primary">Create New Booking</button>
+            <table id="bookings-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Room Type</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Booking data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Payments Tab -->
+        <section id="payments" class="tab-content">
+            <h2>Payments</h2>
+            <button id="add-payment-btn" class="btn-primary">Add New Payment</button>
+            <table id="payments-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Booking ID</th>
+                        <th>Customer</th>
+                        <th>Payment Date</th>
+                        <th>Amount</th>
+                        <th>Payment Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Payment data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Staff Tab -->
+        <section id="staff" class="tab-content">
+            <h2>Staff</h2>
+            <button id="add-staff-btn" class="btn-primary">Add New Staff</button>
+            <table id="staff-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Staff data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Credits Tab -->
+        <section id="credits" class="tab-content">
+            <div class="credits-header">
+                <h2>Project Credits</h2>
+                <div class="project-logo"></div>
+            </div>
+            
+            <div class="credits-container">
+                <div class="credit-card">
+                    <h3>Project Information</h3>
+                    <div class="credit-content">
+                        <div class="info-item">
+                            <span class="info-label">Project Title:</span>
+                            <span class="info-value">Hotel Room Management System</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">College:</span>
+                            <span class="info-value">Dr. D.Y. Patil College of Engineering, Akurdi</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Subject:</span>
+                            <span class="info-value">Database Management Systems</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Class:</span>
+                            <span class="info-value">SY B.Tech – Division A</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Academic Year:</span>
+                            <span class="info-value">2025–2026</span>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="credit-card">
+                    <h3>Group Members</h3>
+                    <div class="credit-content">
+                        <div class="member-card">
+                            <div class="member-info">
+                                <span class="member-name">Tanish Patidar</span>
+                                <span class="member-roll">Roll No. 1</span>
+                            </div>
+                            <div class="member-icon">👤</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-info">
+                                <span class="member-name">Prathamesh Barbole</span>
+                                <span class="member-roll">Roll No. 7</span>
+                            </div>
+                            <div class="member-icon">👤</div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-info">
+                                <span class="member-name">Shreyash Nikam</span>
+                                <span class="member-roll">Roll No. 8</span>
+                            </div>
+                            <div class="member-icon">👤</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="credit-card">
+                    <h3>Project Description</h3>
+                    <div class="credit-content">
+                        <p>This Hotel Room Management System is a comprehensive full-stack web application developed as a mini project for the Database Management Systems course. The system provides end-to-end management capabilities for hotel operations including:</p>
+                        <ul>
+                            <li>Customer information management</li>
+                            <li>Room availability tracking</li>
+                            <li>Booking and reservation handling</li>
+                            <li>Payment processing and tracking</li>
+                            <li>Staff information management</li>
+                            <li>Real-time dashboard with statistics</li>
+                        </ul>
+                        <p>The application features a modern, responsive user interface with intuitive navigation, real-time data visualization, and secure data handling using SQLite database technology.</p>
+                    </div>
+                </div>
+                
+                <div class="credit-card">
+                    <h3>Technologies Used</h3>
+                    <div class="credit-content">
+                        <div class="tech-stack">
+                            <div class="tech-item">
+                                <span class="tech-icon">💻</span>
+                                <span class="tech-name">Frontend: HTML, CSS, JavaScript</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-icon">⚙️</span>
+                                <span class="tech-name">Backend: Node.js, Express.js</span>
+                            </div>
+                            <div class="tech-item">
+                                <span class="tech-icon">🗄️</span>
+                                <span class="tech-name">Database: SQLite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for adding customers -->
+    <div id="customer-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Customer</h2>
+            <form id="customer-form">
+                <input type="hidden" id="customer-id">
+                <div class="form-group">
+                    <label for="customer-name">Name:</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-phone">Phone:</label>
+                    <input type="text" id="customer-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-email">Email:</label>
+                    <input type="email" id="customer-email">
+                </div>
+                <div class="form-group">
+                    <label for="customer-address">Address:</label>
+                    <textarea id="customer-address"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Save Customer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for adding rooms -->
+    <div id="room-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Room</h2>
+            <form id="room-form">
+                <input type="hidden" id="room-id">
+                <div class="form-group">
+                    <label for="room-type">Room Type:</label>
+                    <input type="text" id="room-type" required>
+                </div>
+                <div class="form-group">
+                    <label for="room-price">Price per Night:</label>
+                    <input type="number" id="room-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="room-available">Available:</label>
+                    <select id="room-available">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn-primary">Save Room</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for adding bookings -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Booking</h2>
+            <form id="booking-form">
+                <input type="hidden" id="booking-id">
+                <div class="form-group">
+                    <label for="booking-customer">Customer:</label>
+                    <select id="booking-customer" required>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="booking-room">Room:</label>
+                    <select id="booking-room" required>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="check-in-date">Check-in Date:</label>
+                    <input type="date" id="check-in-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="check-out-date">Check-out Date:</label>
+                    <input type="date" id="check-out-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="total-amount">Total Amount:</label>
+                    <input type="number" id="total-amount" step="0.01" required>
+                </div>
+                <button type="submit" class="btn-primary">Create Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for adding payments -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Payment</h2>
+            <form id="payment-form">
+                <input type="hidden" id="payment-id">
+                <div class="form-group">
+                    <label for="payment-booking">Booking:</label>
+                    <select id="payment-booking" required>
+                        <!-- Options will be populated dynamically -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="payment-date">Payment Date:</label>
+                    <input type="date" id="payment-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="payment-amount">Amount:</label>
+                    <input type="number" id="payment-amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="payment-method">Payment Method:</label>
+                    <select id="payment-method" required>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Online Transfer">Online Transfer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Add Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for adding staff -->
+    <div id="staff-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Staff</h2>
+            <form id="staff-form">
+                <input type="hidden" id="staff-id">
+                <div class="form-group">
+                    <label for="staff-name">Name:</label>
+                    <input type="text" id="staff-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="staff-role">Role:</label>
+                    <input type="text" id="staff-role" required>
+                </div>
+                <div class="form-group">
+                    <label for="staff-phone">Phone:</label>
+                    <input type="text" id="staff-phone">
+                </div>
+                <div class="form-group">
+                    <label for="staff-email">Email:</label>
+                    <input type="email" id="staff-email">
+                </div>
+                <button type="submit" class="btn-primary">Save Staff</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
